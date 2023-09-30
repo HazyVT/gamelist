@@ -18,17 +18,18 @@ function App() {
       setSession(session)
       console.log(session)
       setUser(session.user)
-    })
+    }).catch(() => {console.log('rejected')})
   }, [])
 
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar session={session}/>
         <Routes>
           <Route path='/' />
-          <Route path='/auth' element={session ? <Account session={session} /> : <Auth />} />
+          <Route path='/auth' element={<Auth />} />
           <Route path='user/:username' element={<UserPage/>} />
+          <Route path='/account' element={<Account session={session} /> } />
         </Routes>
       </Router>
       <Box>

@@ -12,11 +12,13 @@ export default function Account({session}) {
   useEffect(() => {
     async function getProfile() {
       setLoading(true)
-      const { user } = session
+      if (session != null) {
+        const { user } = session
 
-      console.log(user)
-      setUsername(user.user_metadata.full_name);
-      setAvatar(user.user_metadata.avatar_url)
+        console.log(user)
+        setUsername(user.user_metadata.full_name);
+        setAvatar(user.user_metadata.avatar_url)
+      }
 
       setLoading(false);
     }
