@@ -29,7 +29,7 @@ export default function Account({session}) {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    window.location.reload()
+    window.location.href='http://localhost:5174/'
   }
   
   return (

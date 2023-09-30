@@ -23,15 +23,17 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navbar session={session}/>
-        <Routes>
-          <Route path='/' />
-          <Route path='/auth' element={<Auth />} />
-          <Route path='user/:username' element={<UserPage/>} />
-          <Route path='/account' element={<Account session={session} /> } />
-        </Routes>
-      </Router>
+      <Box className='container'>
+        <Router>
+          <Navbar session={session}/>
+          <Routes>
+            <Route path='/' />
+            <Route path='/auth' element={<Auth />} />
+            <Route path='user/:username' element={<UserPage/>} />
+            <Route path='/account' element={<Account session={session} /> } />
+          </Routes>
+        </Router>
+      </Box>
       <Box>
       </Box>
     </>
