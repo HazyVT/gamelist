@@ -1,33 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { Box } from '@chakra-ui/react';
+import { supabase } from './supaClient';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
+import Auth from './Auth';
+import Account from './Account';
+import Navbar from './Navbar';
+import UserPage from './UserPage';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [ session, setSession ] = useState(null);
+  const [ user, setUser ] = useState(null)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+      console.log(session)
+      setUser(session.user)
+    })
+  }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' />
+          <Route path='/auth' element={session ? <Account session={session} /> : <Auth />} />
+          <Route path='user/:username' element={<UserPage/>} />
+        </Routes>
+      </Router>
+      <Box>
+      </Box>
     </>
   )
 }
