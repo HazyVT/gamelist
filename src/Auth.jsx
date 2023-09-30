@@ -26,7 +26,7 @@ export default function Auth() {
 
   return (
     <>
-      {loading ? <Box><Spinner /></Box> : <Box><Heading>MyGameList</Heading><Button onClick={signInWithDiscord}>Sign in via discord</Button></Box>}
+      {loading ? <Box><Spinner /></Box> : <Box display='flex' justifyContent={'center'} margin={16}><Button onClick={signInWithDiscord}>Sign in via discord</Button></Box>}
     </>
   )
 }

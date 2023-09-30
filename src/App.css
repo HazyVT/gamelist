@@ -10,9 +10,10 @@
 .container .navbar {
   display: flex;
   width: 90vw;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   padding: 2vw;
+  box-sizing: content-box;
 }
 
 .container .navbar a {
