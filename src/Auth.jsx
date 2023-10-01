@@ -14,7 +14,7 @@ export default function Auth() {
       options: {
         redirectTo: 'https://gamelist-snowy.vercel.app/account'
       }
-    })
+    }).then((res) => {console.log(res)});
 
     if (error) {
       console.log(error);
