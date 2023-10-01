@@ -13,6 +13,7 @@ export default function Account({session}) {
     async function getProfile() {
       setLoading(true)
       const { user } = session
+      console.log(user);
 
       setUsername(user.user_metadata.full_name);
       setAvatar(user.user_metadata.avatar_url)
@@ -31,7 +32,7 @@ export default function Account({session}) {
   
   return (
     <>
-      {loading ? <Box><p>{username}</p><img src={avatar} /><Button onClick={signOut}>Sign Out</Button></Box> : <Box><Spinner /></Box>}
+      {loading ? <Box><Spinner /></Box> :  <Box><p>{username}</p><img src={avatar} /><Button onClick={signOut}>Sign Out</Button></Box>}
     </>
   )
 }
