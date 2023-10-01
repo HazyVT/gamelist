@@ -22,9 +22,9 @@ export default function UserPage() {
 
   return (
     <>
-      <Box>
-        <Heading>{username}</Heading>
-        <Image src={avatar} />
+      <Box display='flex' justifyContent={'center'} flexDir={'column'} alignItems={'center'}>
+        <Heading padding={2}>{username}</Heading>
+        <Image src={avatar} w={24}/>
       </Box>
     </>
   )
