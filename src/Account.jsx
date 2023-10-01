@@ -32,7 +32,16 @@ export default function Account({session}) {
   
   return (
     <>
-      {loading ? <Box><Spinner /></Box> :  <Box><p>{username}</p><img src={avatar} /><Button onClick={signOut}>Sign Out</Button></Box>}
+      {loading ? 
+        <Box>
+          <Spinner />
+        </Box> 
+        : 
+        <Box>
+          <p>{username}</p>
+          <img src={avatar} />
+          <Button onClick={signOut}>Sign Out</Button>
+        </Box>}
     </>
   )
 }
