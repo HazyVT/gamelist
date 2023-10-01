@@ -29,7 +29,7 @@ export default function Account({session}) {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    window.location.href='https://hazyvt.github.io/gamelist'
+    window.location.href='https://gamelist-snowy.vercel.app/'
   }
   
   return (

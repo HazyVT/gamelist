@@ -20,7 +20,7 @@ export default function Navbar({session}) {
       supabase.from('profiles').select().eq('full_name',event.target.value).then((res) => {
         if (res.data.length > 0) {
           console.log("User found");
-          window.location.href='https://hazyvt.github.io/gamelist/user/' + event.target.value;
+          window.location.href='https://gamelist-snowy.vercel.app/user/' + event.target.value;
         } else {
           console.log("No user found");
         }
