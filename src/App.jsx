@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 import { supabase } from './supaClient';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -7,6 +7,7 @@ import Auth from './Auth';
 import Account from './Account';
 import Navbar from './Navbar';
 import UserPage from './UserPage';
+import Home from './Home';
 
 function App() {
 
@@ -25,14 +26,16 @@ function App() {
     <>
       <Box className='container'>
         <Router>
-          <Navbar session={session}/>
+          <Navbar session={session}/> 
           <Routes>
-            <Route path='/' />
+            <Route path='/' element={<Home />} />
             <Route path='/auth' element={<Auth />} />
             <Route path='/user/:username' element={<UserPage/>} />
             <Route path='/account' element={<Account session={session}/>} />
           </Routes>
         </Router>
+        <Box>
+        </Box>
       </Box>
       <Box>
       </Box>

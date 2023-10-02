@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react"
-import { supabase } from "./supaClient"
-import { Button, Box, Spinner } from "@chakra-ui/react"
+import { Box, Button, Heading, Icon, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Spinner, useDisclosure } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
+import { AiFillPlusCircle } from 'react-icons/ai';
+import { supabase } from "./supaClient";
 
 export default function Account({session}) {
 
-  const [loading, setLoading] = useState(true)
-  const [username, setUsername] = useState(null)
-  const [avatar, setAvatar] = useState(null)
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
 
   useEffect(() => {
     async function getProfile() {
@@ -24,11 +27,9 @@ export default function Account({session}) {
     getProfile()
   }, [session])
 
+  //https://gamelist-snowy.vercel.app/
 
-  async function signOut() {
-    const { error } = await supabase.auth.signOut();
-    window.location.href='https://gamelist-snowy.vercel.app/'
-  }
+  
   
   return (
     <>
@@ -37,10 +38,26 @@ export default function Account({session}) {
           <Spinner />
         </Box> 
         : 
-        <Box>
-          <p>{username}</p>
-          <img src={avatar} />
-          <Button onClick={signOut}>Sign Out</Button>
+        <Box display='flex' flexDir='row' justifyContent={'space-around'} margin={8}>
+          <Box>
+            <p>{username}</p>
+            <Image src={avatar} w={16}/>
+            <Button onClick={signOut} w={'fit-content'}>Sign Out</Button>
+          </Box>
+          <Box>
+            <Heading>List</Heading>
+            <Button onClick={onOpen}><Icon as={AiFillPlusCircle} /></Button>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Add Game</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Input placeholder='Game Name'/>
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          </Box>
         </Box>}
     </>
   )

@@ -12,7 +12,7 @@ export default function Auth() {
     const { data, error } = supabase.auth.signInWithOAuth({
       provider: 'discord',
       options: {
-        redirectTo: 'https://gamelist-snowy.vercel.app/account'
+        redirectTo: 'http://localhost:5174/account'
       }
     });
 
@@ -26,7 +26,7 @@ export default function Auth() {
 
   return (
     <>
-      {loading ? <Box><Spinner /></Box> : <Box display='flex' justifyContent={'center'} margin={16}><Button onClick={signInWithDiscord}>Sign in via discord</Button></Box>}
+      {<Box display='flex' justifyContent={'center'} margin={16}><Button onClick={signInWithDiscord}>Sign in via discord</Button></Box>}
     </>
   )
 }

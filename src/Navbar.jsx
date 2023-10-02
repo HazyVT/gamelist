@@ -1,6 +1,6 @@
 import { Box, Icon, Image, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { NavLink as Link } from "react-router-dom";
-import { BiSearchAlt2 } from 'react-icons/bi'
+import { BiSearchAlt2, BiExit } from 'react-icons/bi'
 import { supabase } from "./supaClient";
 
 // eslint-disable-next-line react/prop-types
@@ -11,6 +11,11 @@ export default function Navbar({session}) {
   if (session != null) {
   // eslint-disable-next-line react/prop-types
     pfp = session.user.user_metadata.avatar_url;
+  }
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    window.location.href='https://gamelist-snowy.vercel.app/'
   }
 
   const handle_search = (event) => {
@@ -29,17 +34,18 @@ export default function Navbar({session}) {
   }
 
   return (
-    <>
+    <Box display='flex'>
       <Box className="navbar">
-        <Link to='/'>Home</Link>
-        <Link to={session ? '/account' : '/auth'}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'User'}</Link>
-        <Box>
-          <InputGroup w={'fit-content'}>
-            <InputLeftElement pointerEvents={'none'} borderRadius={'16px'} color='gray.300' children={<Icon as={BiSearchAlt2}/>} />
-            <Input type='text' placeholder='username' borderRadius={'16px'} color='black' backgroundColor={'white'} w={'fit-content'} onKeyPress={handle_search} />
-          </InputGroup>
+        <Link className={'pfp'} to={session ? '/account' : '/auth'}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'Login'}</Link>
+        <Box className="signout">
+          <Icon as={BiExit} marginRight={2}/><Link onClick={signOut}>Sign Out</Link>
         </Box>
       </Box>
-    </>
+      <InputGroup w={'fit-content'} marginLeft='12' marginTop='4'>
+        <InputLeftElement pointerEvents={'none'} borderRadius={'16px'} color='gray.300' children={<Icon as={BiSearchAlt2}/>} />
+        <Input type='text' placeholder='username' borderRadius={'16px'} color='black' backgroundColor={'white'} w={'fit-content'} onKeyPress={handle_search} />
+      </InputGroup>
+      
+    </Box>
   )
 }
