@@ -20,7 +20,7 @@ export default function UserPage() {
   let joined = new Date;
 
   async function getProfile() {
-    if (write < 1) {
+    if (write <= 1) {
       console.log(write);
     // Get the user
     supabase
