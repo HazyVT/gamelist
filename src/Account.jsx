@@ -42,7 +42,6 @@ export default function Account({session}) {
           <Box>
             <p>{username}</p>
             <Image src={avatar} w={16}/>
-            <Button onClick={signOut} w={'fit-content'}>Sign Out</Button>
           </Box>
           <Box>
             <Heading>List</Heading>
