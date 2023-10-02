@@ -25,7 +25,7 @@ export default function UserPage() {
     joined.setDate(date);
     joined.setMonth(month);
     joined.setFullYear(year);
-    setCreated(joined.toDateString());
+    setCreated(joined.toDateString().slice(4,));
     setLoading(false)
   });
 
