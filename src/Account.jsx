@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Box, Button, Heading, Icon, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Spinner, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Heading, Icon, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Spinner, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { supabase } from "./supaClient";
