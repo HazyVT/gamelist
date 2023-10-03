@@ -16,7 +16,7 @@ export default function Navbar({session}) {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    window.location.href='https://gamelist-snowy.vercel.app/'
+    window.location.href='https://gdb.mosalim.site/'
   }
 
   const handle_search = (event) => {
@@ -26,7 +26,7 @@ export default function Navbar({session}) {
       supabase.from('profiles').select().eq('full_name',event.target.value).then((res) => {
         if (res.data.length > 0) {
           console.log("User found");
-          window.location.href='https://gamelist-snowy.vercel.app/user/' + event.target.value;
+          window.location.href='https://gdb.mosalim.site/user/' + event.target.value;
         } else {
           console.log("No user found");
         }

@@ -12,7 +12,7 @@ export default function Auth() {
     const { data, error } = supabase.auth.signInWithOAuth({
       provider: 'discord',
       options: {
-        redirectTo: 'https://gamelist-snowy.vercel.app/account'
+        redirectTo: 'https://gdb.mosalim.site/account'
       }
     });
 
