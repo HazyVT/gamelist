@@ -9,7 +9,10 @@ export default function Account({session}) {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   const [avatar, setAvatar] = useState(null);
+  const [id, setId] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const gname = useRef();
+  const score = useRef();
   const cancelRef = useRef();
 
   useEffect(() => {
@@ -20,6 +23,7 @@ export default function Account({session}) {
 
       setUsername(user.user_metadata.full_name);
       setAvatar(user.user_metadata.avatar_url)
+      setId(user.id);
 
       setLoading(false);
     }
@@ -28,6 +32,13 @@ export default function Account({session}) {
   }, [session])
 
   //https://gamelist-snowy.vercel.app/
+
+  async function addToDB() {
+    await supabase
+    .from('game_list')
+    .insert({user_id: id, game_name: gname.current.value, score: score.current.value});
+    onClose();
+  }
 
   
   
@@ -38,13 +49,9 @@ export default function Account({session}) {
           <Spinner />
         </Box> 
         : 
-        <Box display='flex' flexDir='row' justifyContent={'space-around'} margin={8}>
-          <Box>
-            <p>{username}</p>
-            <Image src={avatar} w={16}/>
-          </Box>
-          <Box>
-            <Heading>List</Heading>
+        <Box display='flex' flexDir='row' justifyContent={'space-around'} marginTop={24}>
+          <Box display='flex' w={48} h={'fit-content'} justifyContent={'center'} alignItems={'center'}>
+            <Heading fontWeight={200} size='md' marginRight={4}>Add To List</Heading>
             <Button onClick={onOpen}><Icon as={AiFillPlusCircle} /></Button>
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
@@ -52,7 +59,9 @@ export default function Account({session}) {
                 <ModalHeader>Add Game</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                  <Input placeholder='Game Name'/>
+                  <Input ref={gname} type='text' placeholder='Game Name' margin={2}/>
+                  <Input ref={score} type='number' placeholder='score' margin={2} />
+                  <Button colorScheme="teal" margin={2} onClick={addToDB}>Add</Button>
                 </ModalBody>
               </ModalContent>
             </Modal>
