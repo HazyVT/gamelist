@@ -16,7 +16,7 @@ export default function Navbar({session}) {
 
   async function signOut() {
     const { error } = await supabase.auth.signOut();
-    window.location.href='https://gamelist-snowy.vercel.app/'
+    window.location.href='https://gdb.mosalim.site/'
   }
 
   const handle_search = (event) => {
@@ -26,7 +26,7 @@ export default function Navbar({session}) {
       supabase.from('profiles').select().eq('full_name',event.target.value).then((res) => {
         if (res.data.length > 0) {
           console.log("User found");
-          window.location.href='https://gamelist-snowy.vercel.app/user/' + event.target.value;
+          window.location.href='https://gdb.mosalim.site/user/' + event.target.value;
         } else {
           console.log("No user found");
         }
@@ -39,7 +39,7 @@ export default function Navbar({session}) {
       <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'} paddingTop={2}>
         <Link to={'/'} className='home'>{'Home'}</Link>
         <Link className={'pfp'} to={session ? '/account' : '/auth'}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'Login'}</Link>
-        <Box className="signout" display='flex' alignItems={'center'}>
+        <Box className="signout" display={session ? 'flex' : 'none'} alignItems={'center'}>
           <Icon as={BiExit} marginRight={2}/><Link onClick={signOut}>Sign Out</Link>
         </Box>
       </Box>
