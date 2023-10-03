@@ -35,19 +35,20 @@ export default function Navbar({session}) {
   }
 
   return (
-    <Box display='flex'>
-      <Box className="navbar">
+    <Box>
+      <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'} paddingTop={2}>
         <Link to={'/'} className='home'>{'Home'}</Link>
         <Link className={'pfp'} to={session ? '/account' : '/auth'}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'Login'}</Link>
         <Box className="signout">
           <Icon as={BiExit} marginRight={2}/><Link onClick={signOut}>Sign Out</Link>
         </Box>
       </Box>
-      <InputGroup w={'fit-content'} marginLeft='12' marginTop='4'>
-        <InputLeftElement pointerEvents={'none'} borderRadius={'16px'} color='gray.300' children={<Icon as={BiSearchAlt2}/>} />
-        <Input type='text' placeholder='username' borderRadius={'16px'} color='black' backgroundColor={'white'} w={'fit-content'} onKeyPress={handle_search} />
-      </InputGroup>
-      
+      <Box display='flex' justifyContent={'center'} marginTop={8}>
+        <InputGroup w={'fit-content'}>
+          <InputLeftElement pointerEvents={'none'} borderRadius={'16px'} color='gray.300' children={<Icon as={BiSearchAlt2}/>} />
+          <Input type='text' placeholder='username' borderRadius={'16px'} color='black' backgroundColor={'white'} onKeyPress={handle_search} />
+        </InputGroup>  
+      </Box>
     </Box>
   )
 }

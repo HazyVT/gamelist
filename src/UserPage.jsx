@@ -72,8 +72,8 @@ export default function UserPage() {
         <Spinner />
       </Box>
       :
-      <Box display='flex'>
-        <Box display='flex' flexDir={'column'} alignItems={'center'} marginLeft={12} marginTop={36}>
+      <Box>
+        <Box display='flex' flexDir='column' justifyContent={'center'} alignItems={'center'} marginTop={12}>
           <Image src={avatar} w={24} borderRadius={12}/>
           <Heading>{username}</Heading>
           <span>Joined: {created}</span>
