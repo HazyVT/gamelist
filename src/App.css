@@ -3,3 +3,7 @@
   color: white;
   height: 100vh;
 }
+
+.container .navbar a:hover {
+  text-decoration: underline;
+}

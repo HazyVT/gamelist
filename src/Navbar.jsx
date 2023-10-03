@@ -35,11 +35,11 @@ export default function Navbar({session}) {
   }
 
   return (
-    <Box>
+    <Box className='navbar'>
       <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'} paddingTop={2}>
         <Link to={'/'} className='home'>{'Home'}</Link>
         <Link className={'pfp'} to={session ? '/account' : '/auth'}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'Login'}</Link>
-        <Box className="signout">
+        <Box className="signout" display='flex' alignItems={'center'}>
           <Icon as={BiExit} marginRight={2}/><Link onClick={signOut}>Sign Out</Link>
         </Box>
       </Box>
