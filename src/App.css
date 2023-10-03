@@ -10,7 +10,7 @@
 }
 
 .container .navbar {
-  width: 15vw;
+  width: 128pt;
   height: 100vh;
   background-color: #94B4C4;
   display: flex;
@@ -24,6 +24,11 @@
   bottom: 2vh;
   display: flex;
   align-items: center;
+}
+
+.container .navbar .home {
+  position: fixed;
+  top: 48pt;
 }
 
 .container .navbar .pfp {

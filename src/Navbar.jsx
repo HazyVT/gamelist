@@ -2,6 +2,7 @@ import { Box, Icon, Image, Input, InputGroup, InputLeftElement } from "@chakra-u
 import { NavLink as Link } from "react-router-dom";
 import { BiSearchAlt2, BiExit } from 'react-icons/bi'
 import { supabase } from "./supaClient";
+import Home from "./Home";
 
 // eslint-disable-next-line react/prop-types
 export default function Navbar({session}) {
@@ -36,6 +37,7 @@ export default function Navbar({session}) {
   return (
     <Box display='flex'>
       <Box className="navbar">
+        <Link to={'/'} className='home'>{'Home'}</Link>
         <Link className={'pfp'} to={session ? '/account' : '/auth'}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'Login'}</Link>
         <Box className="signout">
           <Icon as={BiExit} marginRight={2}/><Link onClick={signOut}>Sign Out</Link>
