@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Box, Button, Heading, Icon, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Spinner, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Heading, Icon, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Spinner, Table, TableCaption, TableContainer, Thead ,Td, Tr, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { supabase } from "./supaClient";
@@ -49,7 +49,7 @@ export default function Account({session}) {
           <Spinner />
         </Box> 
         : 
-        <Box display='flex' flexDir='row' justifyContent={'space-around'} marginTop={24}>
+        <Box display='flex' flexDir='column' alignItems={'center'} marginTop={24}>
           <Box display='flex' w={48} h={'fit-content'} justifyContent={'center'} alignItems={'center'}>
             <Heading fontWeight={200} size='md' marginRight={4}>Add To List</Heading>
             <Button onClick={onOpen}><Icon as={AiFillPlusCircle} /></Button>

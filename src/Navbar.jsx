@@ -39,7 +39,7 @@ export default function Navbar({session}) {
       <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'} paddingTop={2}>
         <Link to={'/'} className='home'>{'Home'}</Link>
         <Link className={'pfp'} to={session ? '/account' : '/auth'}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'Login'}</Link>
-        <Box className="signout" display={session ? 'flex' : 'none'} alignItems={'center'}>
+        <Box className="signout" display={session ? 'flex' : 'nonex'} alignItems={'center'}>
           <Icon as={BiExit} marginRight={2}/><Link onClick={signOut}>Sign Out</Link>
         </Box>
       </Box>
