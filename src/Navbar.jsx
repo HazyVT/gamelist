@@ -2,10 +2,13 @@ import { Box, Icon, Image, Input, InputGroup, InputLeftElement } from "@chakra-u
 import { NavLink as Link } from "react-router-dom";
 import { BiSearchAlt2, BiExit } from 'react-icons/bi'
 import { supabase } from "./supaClient";
+import { useState } from 'react'
 import Home from "./Home";
 
 // eslint-disable-next-line react/prop-types
 export default function Navbar({session}) {
+
+  const [ loading, setLoading ] = useState(false);
 
   let pfp = null;
 
@@ -18,6 +21,8 @@ export default function Navbar({session}) {
     const { error } = await supabase.auth.signOut();
     window.location.href='https://gdb.mosalim.site/'
   }
+
+  
 
   const handle_search = (event) => {
     let key = event.key;
@@ -34,12 +39,22 @@ export default function Navbar({session}) {
     }
   }
 
+  async function signInWithDiscord() {
+    const { data, error } = supabase.auth.signInWithOAuth({
+      provider: 'discord',
+      options: {
+        redirectTo: 'https://gdb.mosalim.site/account'
+      }
+    })  
+  }
+
+
   return (
     <Box className='navbar'>
       <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'} paddingTop={2}>
         <Link to={'/'} className='home'>{'Home'}</Link>
-        <Link className={'pfp'} to={session ? '/account' : '/auth'}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'Login'}</Link>
-        <Box className="signout" display={session ? 'flex' : 'nonex'} alignItems={'center'}>
+        <Link className={'pfp'} to={session ? '/account' : ''} onClick={session ? () => {console.log("authed")} : () => {signInWithDiscord()}}>{session ? <Image w={12} borderRadius={50} src={pfp}/> : 'Login'}</Link>
+        <Box className="signout" display={session ? 'flex' : 'none'} alignItems={'center'}>
           <Icon as={BiExit} marginRight={2}/><Link onClick={signOut}>Sign Out</Link>
         </Box>
       </Box>

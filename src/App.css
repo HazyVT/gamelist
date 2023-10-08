@@ -4,6 +4,6 @@
   height: 100vh;
 }
 
-.container .navbar a:hover {
+a:hover {
   text-decoration: underline;
 }
