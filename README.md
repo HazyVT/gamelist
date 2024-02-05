@@ -1,23 +1,15 @@
-# MyGameDB
+# gamelist
 
-A web app to store and share your scores of video games that you have played.
+To install dependencies:
 
-Made using:
-- React
-- Chakra UI
-- Supabase
+```bash
+bun install
+```
 
-### Profiles Table
-- Id: uuid (pk)
-- Username: text
-- Biography: text
-- Ranking: text
-- Hours: number
-- image: text
+To run:
 
-### Games Table
-- Id: uuid (pk)
-- User_id: uuid (fk)
-- Name: text
-- Image: text
-- Score: number
+```bash
+bun run index.ts
+```
+
+This project was created using `bun init` in bun v1.0.26. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
