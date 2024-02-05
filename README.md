@@ -1,15 +1,19 @@
-# gamelist
+# Game List
 
-To install dependencies:
+Allows users to create a list of games
 
-```bash
-bun install
-```
+## Table Structure
 
-To run:
+Users: {
+	id,
+	username,
+	image
+}
 
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.26. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+Games: {
+	id,
+	user_id,
+	game_name,
+	game_image,
+	rating
+}
